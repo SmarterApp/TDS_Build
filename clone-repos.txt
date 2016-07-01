@@ -1,4 +1,3 @@
-TDS_Build
 TDS_AdministrationAndRegistrationTools
 TDS_ItemRenderer
 TDS_ItemScoring
