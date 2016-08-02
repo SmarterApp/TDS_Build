@@ -37,7 +37,7 @@ else
     printf "Repositories will be cloned from default\n"
 fi
 
-if [ "${PWD##*/}" = "tds-build" ]; then
+if [ "${PWD##*/}" = "TDS_Build" ]; then
     cd ..
 fi
 
