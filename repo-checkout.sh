@@ -16,14 +16,14 @@
 REPO_LIST_FILE="clone-repos.txt"
 BRANCH="master"
 
-#while getopts ":r:" opt; do
-#  case $opt in
-#    b) BRANCH="$OPTARG"
-#    ;;
-#    \?) echo "Invalid option -$OPTARG" >&2 ; exit
-#    ;;
-#  esac
-#done
+while getopts ":b:" opt; do
+  case $opt in
+    b) BRANCH="$OPTARG"
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2 ; exit
+    ;;
+  esac
+done
 
 if [ ! -f $REPO_LIST_FILE ]; then
     printf "Repository list file %s does not exist. exiting.\n" "$REPO_LIST_FILE"
