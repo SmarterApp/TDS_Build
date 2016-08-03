@@ -32,7 +32,7 @@ fi
 
 FILECONTENT=( `cat $REPO_LIST_FILE` )
 
-if [ "${PWD##*/}" = "tds-build" ]; then
+if [ "${PWD##*/}" = "TDS_Build" ]; then
     cd ..
 fi
 
