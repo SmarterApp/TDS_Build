@@ -42,6 +42,8 @@ POMS=(
     "../repositories/TDS_StudentReportProcessor/pom.xml"
     "../repositories/TDS_CATsimulator/pom.xml"
     "../repositories/TDS_TestDeliverySystemMaintenance/pom.xml"
+    "../repositories/TDS_Dictionary/pom.xml"
+    "../repositories/TDS_ContentUploader/ContentUploader/pom.xml"
 #    "../repositories/TestDeliverySystemRouter/pom.xml"
 )
 

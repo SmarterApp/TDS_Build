@@ -22,3 +22,5 @@ TDS_TestDeliverySystemMaintenance
 TDS_TeacherHandScoringSystem
 TDS_TestIntegrationSystem
 TDS_TestDeliverySystemRouter
+TDS_Dictionary
+TDS_ContentUploader
