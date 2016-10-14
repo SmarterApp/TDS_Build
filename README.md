@@ -18,6 +18,9 @@ The docker-compose file located in the /docker/ directory can used to easily cre
 Before using the docker-compose file, please ensure that docker and docker-compose are installed on the host system. Microservice docker images
 should be built before running docker-compose, otherwise the latest docker images will be fetched from Docker Hub.
 
+Configure JDBC and other connection related properties in the tds-docker.env file prior to running docker-compose. 
+By default, the **tds-docker.env file is blank.**
+
 To run all microservices docker containers, simply run the following command:
 
 ` docker-compose up `
