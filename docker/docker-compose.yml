@@ -1,0 +1,44 @@
+version:  '2'
+services:
+  student:
+    image: fwsbac/tds-student-service
+    ports:
+      - "32840:8080"
+    env_file: tds-docker.env
+  assessment:
+    image: fwsbac/tds-assessment-service
+    ports:
+      - "32841:8080"
+    env_file: tds-docker.env
+  session:
+    image: fwsbac/tds-session-service
+    ports:
+      - "32842:8080"
+    env_file: tds-docker.env
+  config:
+    image: fwsbac/tds-config-service
+    ports:
+      - "32843:8080"
+    env_file: tds-docker.env
+  exam_mysql:
+    image: mysql
+    ports:
+      - "32777:3306"
+    volumes_from:
+      - exam_mysql_data
+    env_file: tds-docker.env
+  exam_mysql_data:
+    image: mysql
+    entrypoint: /bin/bash
+  exam:
+    image: fwsbac/tds-exam-service
+    ports:
+      - "32844:8080"
+    depends_on:
+      - assessment
+      - session
+      - student
+      - config
+      - exam_mysql
+    env_file:
+      - ./tds-docker.env
