@@ -33,7 +33,7 @@ services:
   exam:
     image: fwsbac/tds-exam-service
     ports:
-      - "32844:8080"
+      - "80:8080"
     depends_on:
       - assessment
       - session
