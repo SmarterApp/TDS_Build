@@ -17,8 +17,7 @@ VALUES
   (11,'Monitoring and Alerting',NULL),
   (12,'Core Standards',NULL),
   (13,'Teacher Hand Scoring System',NULL),
-  (14,'Digital Library',NULL),
-  (15,'TIS Admin',NULL);
+  (14,'Digital Library',NULL);
 UNLOCK TABLES;
 
 --
@@ -112,7 +111,11 @@ VALUES
   (68,'Result Upload Modify'),
   (69,'Scoring Rule Read'),
   (70,'Result Upload Read'),
-  (71,'Scoring Rule Modify');
+  (71,'Scoring Rule Modify'),
+  (72,'Can See All Items'),
+  (73,'Can See Own Items'),
+  (74,'ExplicitEligibility Upload')
+  ;
 UNLOCK TABLES;
 
 --
@@ -144,7 +147,8 @@ VALUES
   (21,'Reporting Consortium Staff'),
   (22,'Data Warehouse Loader'),
   (23,'Program Management Read'),
-  (24,'Program Management Admin');
+  (24,'Program Management Admin'),
+  (25,'TIS Admin');
 UNLOCK TABLES;
 
 --
@@ -213,7 +217,12 @@ VALUES
   (22,'CLIENT'),
   (10,'STATE'),
   (12,'STATE'),
-  (5,'CLIENT');
+  (5,'CLIENT'),
+  (25,'INSTITUTION'),
+  (25,'DISTRICT'),
+  (25,'CLIENT'),
+  (25,'STATE')
+  ;
 UNLOCK TABLES;
 --
 -- Insert data into table `permission_role`
@@ -636,5 +645,14 @@ VALUES
   (415,11,4,53),
   (416,11,4,51),
   (417,11,4,49),
-  (418,11,4,47);
+  (418,11,4,47),
+  (419,6,8,45),
+  (420,NULL,13,72),
+  (421,NULL,13,73),
+  (422,6,13,73),
+  (423,1,13,73),
+  (424,1,13,72),
+  (425,NULL,3,74),
+  (426,1,3,74)
+  ;
 UNLOCK TABLES;
