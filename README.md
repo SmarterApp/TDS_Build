@@ -1,5 +1,5 @@
 # TDS_Build
-This repository includes scripts for cloning and building the Test Delivery System, as well as seed data referenced by the Deployment Checklist.
+This repository includes scripts for cloning and building the Test Delivery System, as well as seed data referenced by the Deployment Checklist.  Each bash script has documentation within that explains what the script does and how to use it.
 
 ## Building TDS Components
 There are many repositories that are needed to build the Test Delivery System and a specific order that they must be built.  The shell scripts in this repository will help make that process simpler.  Here are the steps:
