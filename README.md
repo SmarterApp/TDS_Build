@@ -8,6 +8,7 @@ Building the existing components requires Java 7. 
 ### Steps  
 
 * Run `./repo-clone.sh`
+* Switch to 'develop' branches `./repo-checkout -b develop`
 * Run `./build.sh`
 
 It's really as simple as that.
