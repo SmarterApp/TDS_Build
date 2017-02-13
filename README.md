@@ -2,7 +2,10 @@
 This repository includes scripts for cloning and building the Test Delivery System, as well as seed data referenced by the Deployment Checklist.  Each bash script has documentation within that explains what the script does and how to use it.
 
 ## Building TDS Components
-There are many repositories that are needed to build the Test Delivery System and a specific order that they must be built.  The shell scripts in this repository will help make that process simpler.  Here are the steps:
+There are many repositories that are needed to build the Test Delivery System and a specific order that they must be built.  The shell scripts in this repository will help make that process simpler.
+### Prerequisites 
+Building the existing components requires Java 7. 
+### Steps  
 
 * Run `./repo-clone.sh`
 * Run `./build.sh`
@@ -14,7 +17,7 @@ The clone script will create a new `repositories` directory and clone each repos
 ## Running TDS Microservices Using Docker Compose
 The docker-compose file located in the /docker/ directory can used to easily create, start, and manage microservices docker containers. 
 
-### Prequisites
+### Prerequisites
 Before using the docker-compose file, please ensure that docker and docker-compose are installed on the host system. Microservice docker images
 should be built before running docker-compose, otherwise the latest docker images will be fetched from Docker Hub.
 
