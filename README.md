@@ -23,7 +23,7 @@ The clone script will create a new `repositories` directory and clone each repos
 ## Running TDS Microservices Using Docker Compose
 The docker-compose file located in the /docker/ directory can used to easily create, start, and manage microservices docker containers. 
 
-### Prequisites
+### Prerequisites
 Before using the docker-compose file, please ensure that docker and docker-compose are installed on the host system. Microservice docker images
 should be built before running docker-compose, otherwise the latest docker images will be fetched from Docker Hub.
 
