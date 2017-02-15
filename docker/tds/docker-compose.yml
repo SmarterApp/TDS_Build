@@ -1,5 +1,20 @@
-version:  '2'
+version:  '2.1'
 services:
+  configuration-service:
+    image: fwsbac/configuration-service
+    ports:
+      - "32844:8888"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/health.json"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    environment:
+      # Define these in your host machine environment
+      - CONFIG_SERVICE_REPO
+      - GIT_USER
+      - GIT_PASSWORD
+      - ENCRYPT_KEY
   student:
     image: fwsbac/tds-student-service
     ports:
@@ -20,25 +35,26 @@ services:
     ports:
       - "32843:8080"
     env_file: tds-docker.env
-  exam_mysql:
-    image: mysql
-    ports:
-      - "32777:3306"
-    volumes_from:
-      - exam_mysql_data
-    env_file: tds-docker.env
-  exam_mysql_data:
-    image: mysql
-    entrypoint: /bin/bash
   exam:
     image: fwsbac/tds-exam-service
     ports:
       - "80:8080"
     depends_on:
-      - assessment
-      - session
-      - student
-      - config
-      - exam_mysql
+      configuration-service:
+        condition: service_healthy
+      assessment:
+        condition: service_started
+      session:
+        condition: service_started
+      student:
+        condition: service_started
+      config:
+        condition: service_started
     env_file:
-      - ./tds-docker.env
+      - tds-common.env
+      - exam.env
+    environment:
+      # Define these in your host machine environment
+      - MYSQL_URL
+      - MYSQL_USER
+      - MYSQL_PASSWORD
