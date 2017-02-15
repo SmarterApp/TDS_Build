@@ -50,10 +50,10 @@ services:
         condition: service_started
       config:
         condition: service_started
+    env_file:
+      - tds-common.env
+      - exam.env
     environment:
-      - CONFIG_SERVICE_URL=http://configuration-service:8888
-      - CONFIG_SERVICE_ENABLED=true
-      - SPRING_PROFILES_ACTIVE=local-docker
       # Define these in your host machine environment
       - MYSQL_URL
       - MYSQL_USER
