@@ -55,6 +55,6 @@ services:
       - exam.env
     environment:
       # Define these in your host machine environment
-      - MYSQL_URL
-      - MYSQL_USER
-      - MYSQL_PASSWORD
+      - SBAC_JDBC_HOST
+      - SBAC_JDBC_USER
+      - SBAC_JDBC_PASSWORD
