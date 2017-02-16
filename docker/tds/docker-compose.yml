@@ -44,7 +44,17 @@ services:
     image: fwsbac/tds-config-service
     ports:
       - "32843:8080"
-    env_file: tds-docker.env
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    env_file:
+      - tds-common.env
+      - config.env
   exam:
     image: fwsbac/tds-exam-service
     ports:
