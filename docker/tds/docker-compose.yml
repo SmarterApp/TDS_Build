@@ -1,5 +1,6 @@
 version:  '2.1'
 services:
+  # SPRING CLOUD CONFIGURATION SERVICE
   configuration-service:
     image: fwsbac/configuration-service
     ports:
@@ -15,11 +16,25 @@ services:
       - GIT_USER
       - GIT_PASSWORD
       - ENCRYPT_KEY
+
+  # TDS_StudentService
   student:
     image: fwsbac/tds-student-service
     ports:
       - "32840:8080"
-    env_file: tds-docker.env
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    env_file:
+      - tds-common.env
+      - student.env
+
+  #TDS_AssessmentService
   assessment:
     image: fwsbac/tds-assessment-service
     ports:
@@ -35,6 +50,8 @@ services:
     env_file:
       - tds-common.env
       - assessment.env
+
+  #TDS_SessionService
   session:
     image: fwsbac/tds-session-service
     ports:
@@ -50,6 +67,8 @@ services:
     env_file:
       - tds-common.env
       - session.env
+
+  #TDS_ConfigService
   config:
     image: fwsbac/tds-config-service
     ports:
@@ -65,6 +84,8 @@ services:
     env_file:
       - tds-common.env
       - config.env
+
+  #TDS_ExamService
   exam:
     image: fwsbac/tds-exam-service
     ports:
