@@ -101,6 +101,11 @@ services:
         condition: service_started
       config:
         condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     env_file:
       - tds-common.env
       - exam.env
