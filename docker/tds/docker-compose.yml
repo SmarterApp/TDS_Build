@@ -3,6 +3,7 @@ services:
   # SPRING CLOUD CONFIGURATION SERVICE
   configuration-service:
     image: fwsbac/configuration-service
+    mem_limit: 350M
     ports:
       - "32844:8888"
     healthcheck:
@@ -20,6 +21,7 @@ services:
   # TDS_StudentService
   student:
     image: fwsbac/tds-student-service
+    mem_limit: 350M
     ports:
       - "32840:8080"
     depends_on:
@@ -37,6 +39,7 @@ services:
   #TDS_AssessmentService
   assessment:
     image: fwsbac/tds-assessment-service
+    mem_limit: 350M
     ports:
       - "32841:8080"
     depends_on:
@@ -54,6 +57,7 @@ services:
   #TDS_SessionService
   session:
     image: fwsbac/tds-session-service
+    mem_limit: 350M
     ports:
       - "32842:8080"
     depends_on:
@@ -71,6 +75,7 @@ services:
   #TDS_ConfigService
   config:
     image: fwsbac/tds-config-service
+    mem_limit: 350M
     ports:
       - "32843:8080"
     depends_on:
@@ -88,6 +93,7 @@ services:
   #TDS_ExamService
   exam:
     image: fwsbac/tds-exam-service
+    mem_limit: 350M
     ports:
       - "80:8080"
     depends_on:
