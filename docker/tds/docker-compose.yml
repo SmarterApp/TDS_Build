@@ -3,7 +3,6 @@ services:
   # SPRING CLOUD CONFIGURATION SERVICE
   configuration-service:
     image: fwsbac/configuration-service
-    mem_limit: 350M
     ports:
       - "32844:8888"
     healthcheck:
@@ -17,11 +16,11 @@ services:
       - GIT_USER
       - GIT_PASSWORD
       - ENCRYPT_KEY
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
   # TDS_StudentService
   student:
     image: fwsbac/tds-student-service
-    mem_limit: 350M
     ports:
       - "32840:8080"
     depends_on:
@@ -35,11 +34,12 @@ services:
     env_file:
       - tds-common.env
       - student.env
+    environment:
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
   #TDS_AssessmentService
   assessment:
     image: fwsbac/tds-assessment-service
-    mem_limit: 350M
     ports:
       - "32841:8080"
     depends_on:
@@ -53,11 +53,12 @@ services:
     env_file:
       - tds-common.env
       - assessment.env
+    environment:
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
   #TDS_SessionService
   session:
     image: fwsbac/tds-session-service
-    mem_limit: 350M
     ports:
       - "32842:8080"
     depends_on:
@@ -71,11 +72,12 @@ services:
     env_file:
       - tds-common.env
       - session.env
+    environment:
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
   #TDS_ConfigService
   config:
     image: fwsbac/tds-config-service
-    mem_limit: 350M
     ports:
       - "32843:8080"
     depends_on:
@@ -89,11 +91,12 @@ services:
     env_file:
       - tds-common.env
       - config.env
+    environment:
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
   #TDS_ExamService
   exam:
     image: fwsbac/tds-exam-service
-    mem_limit: 350M
     ports:
       - "80:8080"
     depends_on:
@@ -120,3 +123,4 @@ services:
       - SBAC_JDBC_HOST
       - SBAC_JDBC_USER
       - SBAC_JDBC_PASSWORD
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
