@@ -95,7 +95,7 @@ services:
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
   #TDS Equation Scoring Engine
-  equation-scoring-image:
+  equation-scoring:
     image: fwsbac/equation-scoring-image:3.0.0
     ports:
       - "32845:8080"
