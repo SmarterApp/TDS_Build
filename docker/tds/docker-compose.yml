@@ -94,6 +94,12 @@ services:
     environment:
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
+  #TDS Equation Scoring Engine
+  equation-scoring-image:
+    image: fwsbac/equation-scoring-image:3.0.0
+    ports:
+      - "32845:8080"
+
   #TDS_ExamService
   exam:
     image: fwsbac/tds-exam-service
@@ -124,3 +130,4 @@ services:
       - SBAC_JDBC_USER
       - SBAC_JDBC_PASSWORD
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
+
