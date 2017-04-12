@@ -3,14 +3,18 @@ services:
   # SPRING CLOUD CONFIGURATION SERVICE
   configuration-service:
     image: fwsbac/configuration-service
+    depends_on:
+      rabbit:
+        condition: service_healthy
     ports:
       - "32844:8888"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8888/health.json"]
-      interval: 30s
+      interval: 15s
       timeout: 10s
-      retries: 5
+      retries: 10
     environment:
+      - SPRING_RABBITMQ_HOST=rabbit
       # Define these in your host machine environment
       - CONFIG_SERVICE_REPO
       - GIT_USER
@@ -28,9 +32,9 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
-      interval: 30s
+      interval: 15s
       timeout: 10s
-      retries: 5
+      retries: 10
     env_file:
       - tds-common.env
       - student.env
@@ -47,9 +51,9 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
-      interval: 30s
+      interval: 15s
       timeout: 10s
-      retries: 5
+      retries: 10
     env_file:
       - tds-common.env
       - assessment.env
@@ -66,9 +70,9 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
-      interval: 30s
+      interval: 15s
       timeout: 10s
-      retries: 5
+      retries: 10
     env_file:
       - tds-common.env
       - session.env
@@ -85,9 +89,9 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
-      interval: 30s
+      interval: 15s
       timeout: 10s
-      retries: 5
+      retries: 10
     env_file:
       - tds-common.env
       - config.env
@@ -118,9 +122,9 @@ services:
         condition: service_started
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
-      interval: 30s
+      interval: 15s
       timeout: 10s
-      retries: 5
+      retries: 10
     env_file:
       - tds-common.env
       - exam.env
@@ -130,4 +134,18 @@ services:
       - SBAC_JDBC_USER
       - SBAC_JDBC_PASSWORD
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
+
+  #RabbitMQ Broker
+  rabbit:
+    image: rabbitmq:3.6.9-alpine
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    ports:
+      - "32846:5672"
+    environment:
+      - RABBITMQ_LOGS="-"
+      - RABBITMQ_SASL_LOGS="-"
 
