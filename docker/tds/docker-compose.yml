@@ -135,9 +135,38 @@ services:
       - SBAC_JDBC_PASSWORD
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
+  #TDS_ExamResultsTransmitter
+  exam-results-transmitter:
+    image: fwsbac/tds-exam-results-transmitter
+    ports:
+      - "32849:8080"
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      assessment:
+        condition: service_started
+      session:
+        condition: service_started
+      exam:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    env_file:
+      - tds-common.env
+      - exam-results-transmitter.env
+    environment:
+      # Define these in your host machine environment
+      - SBAC_JDBC_HOST
+      - SBAC_JDBC_USER
+      - SBAC_JDBC_PASSWORD
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
+
   #RabbitMQ Broker
   rabbit:
-    image: rabbitmq:3.6.9-alpine
+    image: rabbitmq:3.6.9-management-alpine
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 15s
@@ -145,7 +174,7 @@ services:
       retries: 10
     ports:
       - "32846:5672"
+      - "32847:15672"
     environment:
       - RABBITMQ_LOGS="-"
       - RABBITMQ_SASL_LOGS="-"
-
