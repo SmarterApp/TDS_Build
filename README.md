@@ -41,7 +41,6 @@ To stop all containers, run the following:
 ## Microservice Database Creation
 
 ### Prerequisites
-* A MySQL 5.6.x server
 * An account on the MySQL server that has sufficient privileges to create database schemas, users and database objects
 
 ### Create Database Schemas for Microservices
