@@ -98,6 +98,25 @@ services:
     environment:
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
+  #TDS_ContentService
+  content:
+    image: fwsbac/tds-content-service
+    ports:
+      - "32848:8080"
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    env_file:
+      - tds-common.env
+      - config.env
+    environment:
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
+
   #TDS Equation Scoring Engine
   equation-scoring:
     image: fwsbac/equation-scoring-image:3.0.0
@@ -119,6 +138,8 @@ services:
       student:
         condition: service_started
       config:
+        condition: service_started
+      content:
         condition: service_started
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
