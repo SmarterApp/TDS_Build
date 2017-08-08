@@ -32,14 +32,10 @@
 # If you are running this script on the server that is intended to host the databases, change HOST to "localhost"
 # (without quotes).  Otherwise, use the public IP or hostname.  To use this script against a server remotely, the
 # user must have remote access to MySQL.
-#HOST=172.27.27.14
-HOST=52.33.126.67
-PORT=3306
-#USER=sbtdsadmin
-USER=remoteuser
-#USER=root
-#PW='sto!9db'
-PW=change*me
+HOST=[the host name or IP address of the database server that will host the TDS databases]
+PORT=[the port on which the database server is listening]
+USER=[the user name with sufficient privileges to create schemas and objects within those schemas]
+PW=[the password for the user account specified above]
 
 #-----------------------------------------------------------------------------------------------------------------------
 # VERIFY DATABASES EXIST BEFORE CREATING SCHEMAS
