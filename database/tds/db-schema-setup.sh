@@ -153,6 +153,7 @@ do
     mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=session < "$f"
 done
 
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=session -e "ALTER TABLE r_proctorpackage MODIFY testtype VARCHAR(40)"
 printf '  SESSION - database schema complete.\n\n'
 
 
@@ -214,6 +215,18 @@ printf '    PATCHES[CONFIGS] - executing sb1281_other_accommodation_visibility.s
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/sb1281_other_accommodation_visibility.sql
 printf '    PATCHES[CONFIGS] - executing sb1301_translation_combined_values order.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1301_translation_combined_values order.sql'
+printf '    PATCHES[CONFIGS] - executing sb1350_appmessageupdate.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1350_appmessageupdate.sql'
+printf '    PATCHES[CONFIGS] - executing sb1362_appmessage_update.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1362_appmessage_update.sql'
+printf '    PATCHES[CONFIGS] - executing sb1396_testgradesreduction.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1396_testgradesreduction.sql'
+printf '    PATCHES[CONFIGS] - executing sb1505_tdscoremessageobject_insert.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1505_tdscoremessageobject_insert.sql'
+printf '    PATCHES[CONFIGS] - executing sbac_help_message_path_update.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sbac_help_message_path_update.sql'
+
+
 printf '    PATCHES[ITEMBANK] - executing db-itembank-item-update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-itembank-item-update.sql
 printf '  PATCHES - complete.\n\n'
