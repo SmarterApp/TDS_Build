@@ -24,7 +24,7 @@
 # Author:  Jeff Johnson <jjohnson@fairwaytech.com>
 #
 # Pre-requisites:  The MySQL server intended to host the TDS databases must be accessible by the computer that will
-# run this script.
+# run this script.  The MySQL server must have `log_bin_trust_function_creators` set to `true`
 #
 # Usage:  ./db-schema-setup.sh (on the server that has MySQL installed and is intended to host the TDS databases)
 #-----------------------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@
 HOST=[the host name or IP address of the database server that will host the TDS databases]
 PORT=[the port on which the database server is listening]
 USER=[the user name with sufficient privileges to create schemas and objects within those schemas]
-PW=[the password of the MySQL user account specified above]
+PW=[the password for the MySQL user account cited above]
 
 #-----------------------------------------------------------------------------------------------------------------------
 # VERIFY DATABASES EXIST BEFORE CREATING SCHEMAS
@@ -153,6 +153,7 @@ do
     mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=session < "$f"
 done
 
+printf "    SESSION - altering testtype column in r_proctorpackage table" "$f"
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=session -e "ALTER TABLE r_proctorpackage MODIFY testtype VARCHAR(40)"
 printf '  SESSION - database schema complete.\n\n'
 
@@ -205,7 +206,6 @@ printf '    PATCHES[CONFIGS] - executing sb1116_appmessages_update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/sb1116_appmessages_update.sql
 printf '    PATCHES[CONFIGS] - executing response_duration_update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/response_duration_update.sql
-
 # Quote from Rami: "--I think this file need NOT be executed when building database from scratch, because the table constraints/indexes has been removed from the original create script (src\main\resources\sql\MYSQL\session\create_indexes.sql) to begin with."
 # printf '    PATCHES[SESSION] - apply sb1282_student_proctor_package_changes.sql\n'
 # mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=session < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/sessionupdates/sb1282_student_proctor_package_changes.sql
@@ -219,15 +219,15 @@ printf '    PATCHES[CONFIGS] - executing sb1350_appmessageupdate.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1350_appmessageupdate.sql'
 printf '    PATCHES[CONFIGS] - executing sb1362_appmessage_update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1362_appmessage_update.sql'
-printf '    PATCHES[CONFIGS] - executing sb1396_testgradesreduction.sql\n'
-mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1396_testgradesreduction.sql'
 printf '    PATCHES[CONFIGS] - executing sb1505_tdscoremessageobject_insert.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1505_tdscoremessageobject_insert.sql'
 printf '    PATCHES[CONFIGS] - executing sbac_help_message_path_update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sbac_help_message_path_update.sql'
 
-
+printf '    PATCHES[ITEMBANK] - executing sb1396_testgradesreduction.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1396_testgradesreduction.sql'
 printf '    PATCHES[ITEMBANK] - executing db-itembank-item-update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-itembank-item-update.sql
+
 printf '  PATCHES - complete.\n\n'
 printf 'BUILDING DATABASE SCHEMAS COMPLETE\n\n'
