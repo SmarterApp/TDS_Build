@@ -20,8 +20,7 @@
 # The scripts cited above are part of the tds-build repo.
 #
 # Finally, any specified patches/updates are applied to the schemas as appropriate.
-#
-# Author:  Jeff Johnson <jjohnson@fairwaytech.com>
+
 #
 # Pre-requisites:  The MySQL server intended to host the TDS databases must be accessible by the computer that will
 # run this script.  The MySQL server must have `log_bin_trust_function_creators` set to `true`
@@ -184,10 +183,6 @@ done
 printf '    DATA[ITEMBANK] - loading configuration data - executing db-itembank-config.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-itembank-config.sql
 
-# Load itembank test data
-printf '    DATA[ITEMBANK] - loading test data - executing db-itembank-load-tests.sql\n'
-mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-itembank-load-tests.sql
-
 # Load session._externs table for SBAC and SBAC_PT in the Development environment
 printf '    DATA[SESSION] - loading seed data - executing db-session-externs-seed-data.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=session < db-session-externs-seed-data.sql
@@ -228,6 +223,8 @@ printf '    PATCHES[ITEMBANK] - executing sb1396_testgradesreduction.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/'sb1396_testgradesreduction.sql'
 printf '    PATCHES[ITEMBANK] - executing db-itembank-item-update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-itembank-item-update.sql
+printf '    PATCHES[ITEMBANK] - executing db-client_testtool-languagecasefix.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < ddb-client_testtool-languagecasefix.sql
 
 printf '  PATCHES - complete.\n\n'
 printf 'BUILDING DATABASE SCHEMAS COMPLETE\n\n'

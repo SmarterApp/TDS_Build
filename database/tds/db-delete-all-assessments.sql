@@ -10,12 +10,9 @@
 --
 -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 --
--- Author: Jeff Johnson <jjohnson@fairwaytech.com>
---
 -- Usage: Execute against the MySQL database server that hosts the itembank and configs databases.
 -- ----------------------------------------------------------------------------------------------------------------------
 
-SET SQL_SAFE_UPDATES = 0;
 START TRANSACTION;
 DELETE FROM itembank.affinitygroupitem;
 DELETE FROM itembank.affinitygroup;
@@ -35,9 +32,7 @@ DELETE FROM itembank.tblstimulus;
 DELETE FROM itembank.tblstrand;
 DELETE FROM itembank.tblsubject;
 COMMIT;
-SET SQL_SAFE_UPDATES = 1;
 
-SET SQL_SAFE_UPDATES = 0;
 START TRANSACTION;
 DELETE FROM configs.client_testproperties;
 DELETE FROM configs.client_testmode;
@@ -51,4 +46,3 @@ DELETE FROM configs.client_test_itemconstraint;
 DELETE FROM configs.client_testtooltype;
 DELETE FROM configs.client_testtool;
 COMMIT;
-SET SQL_SAFE_UPDATES = 1;

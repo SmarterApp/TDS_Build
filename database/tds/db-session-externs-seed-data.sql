@@ -3,10 +3,10 @@
 -- the session.timelimits view will not return any records.  If the session.timelimits view does not return any records,
 -- a user cannot log into the Proctor application.
 --
--- Author: Jeff Johnson <jjohnson@fairwaytech.com>
---
 -- Usage: Execute against the session database after the schema has been created.
 -- ---------------------------------------------------------------------------------------------------------------------
+USE session;
+
 START TRANSACTION;
 INSERT IGNORE session._externs(clientname, environment, shiftwindowstart, shiftwindowend, shiftformstart, shiftformend, shiftftstart, shiftftend)
 VALUES('SBAC', 'Development', 0, 0, 0, 0, 0, 0);
