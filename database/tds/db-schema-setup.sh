@@ -22,8 +22,14 @@
 # Finally, any specified patches/updates are applied to the schemas as appropriate.
 
 #
-# Pre-requisites:  The MySQL server intended to host the TDS databases must be accessible by the computer that will
-# run this script.  The MySQL server must have `log_bin_trust_function_creators` set to `true`
+# Pre-requisites:  
+# 
+#   * The MySQL server intended to host the TDS databases must be accessible by the computer that will
+#     run this script.  The MySQL server must have `log_bin_trust_function_creators` set to `true`
+#   * The TDS_TestDeliverySystemDataAccess must be at the same directory level as TDS_Build.  For example:
+#
+#       /home/ubuntu/TDS_Build
+#       /home/ubuntu/TDS_TestDeliverySystemDataAccess
 #
 # Usage:  ./db-schema-setup.sh (on the server that has MySQL installed and is intended to host the TDS databases)
 #-----------------------------------------------------------------------------------------------------------------------
