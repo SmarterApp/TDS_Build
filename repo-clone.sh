@@ -41,12 +41,12 @@ if [ "${PWD##*/}" = "TDS_Build" ]; then
     cd ..
 fi
 
-if [ -d "repositories" ]; then
+if [ -d "legacy-repositories" ]; then
     printf "A repositories directory exists.\n" 
 else
-    mkdir repositories
+    mkdir legacy-repositories
 fi
-cd repositories
+cd legacy-repositories
 
 printf "TDS repositories will be cloned to %s\n" "${PWD}"
 
@@ -63,7 +63,7 @@ for REPO_NAME in "${FILECONTENT[@]}"; do
     printf "\n===== Change to master branch... %s ===\n"
     cd $REPO_NAME
     git checkout master
-    printf "\n===== Change folder back to repositories... %s ===\n"
+    printf "\n===== Change folder back to legacy-repositories... %s ===\n"
     cd ..
     pwd
 done

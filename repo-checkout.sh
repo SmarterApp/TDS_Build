@@ -36,12 +36,12 @@ if [ "${PWD##*/}" = "TDS_Build" ]; then
     cd ..
 fi
 
-if [ -d "repositories" ]; then
-    printf "A repositories directory exists.\n" 
+if [ -d "legacy-repositories" ]; then
+    printf "A legacy-repositories directory exists.\n" 
 else
-    printf "A repositories directory does not exist.  Shutting down.\n"; exit
+    printf "A legacy-repositories directory does not exist.  Shutting down.\n"; exit
 fi
-cd repositories
+cd legacy-repositories
 pwd
 printf "TDS repositories will be changed to branch %s\n" "${BRANCH}"
 

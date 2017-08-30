@@ -14,35 +14,37 @@
 -- ----------------------------------------------------------------------------------------------------------------------
 
 START TRANSACTION;
-DELETE FROM itembank.affinitygroupitem;
-DELETE FROM itembank.affinitygroup;
-DELETE FROM itembank.testformitem;
-DELETE FROM itembank.testform;
-DELETE FROM itembank.tbladminstimulus;
-DELETE FROM itembank.itemmeasurementparameter;
-DELETE FROM itembank.tblsetofadminitems;
-DELETE FROM itembank.tbladminstrand;
-DELETE FROM itembank.tblitemselectionparm;
-DELETE FROM itembank.testcohort;
-DELETE FROM itembank.tblsetofadminsubjects;
-DELETE FROM itembank.tbltestadmin;
-DELETE FROM itembank.tblitemprops;
-DELETE FROM itembank.tblitem;
-DELETE FROM itembank.tblstimulus;
-DELETE FROM itembank.tblstrand;
-DELETE FROM itembank.tblsubject;
+DELETE FROM itembank.affinitygroupitem; -- nothing to load
+DELETE FROM itembank.affinitygroup; -- nothing to load
+-- DELETE FROM itembank.testformitem; -- worked fine
+-- DELETE FROM itembank.testform; -- worked fine
+-- DELETE FROM itembank.tbladminstimulus; -- worked fine
+-- DELETE FROM itembank.itemmeasurementparameter; -- worked fine
+-- DELETE FROM itembank.itemscoredimension; -- worked fine
+-- DELETE FROM itembank.tblsetofadminitems; -- worked fin
+-- DELETE FROM itembank.tbladminstrand; -- worked fine
+DELETE FROM itembank.tblitemselectionparm; -- nothing to load
+DELETE FROM itembank.testcohort; -- nothing to load
+-- DELETE FROM itembank.tblsetofadminsubjects; -- worked fine
+-- DELETE FROM itembank.tbltestadmin; -- do not need to run
+-- DELETE FROM itembank.tblitemprops; -- worked fine; used script from ~/Desktop
+-- DELETE FROM itembank.tblitem; -- worked fine
+-- DELETE FROM itembank.tblstimulus; -- worked fine
+-- DELETE FROM itembank.tblstrand; -- did not run; not sure what needs to be in here; might not need to if this is for scoring...?
+-- DELETE FROM itembank.tblsubject; -- only loaded SBAC-StudentHelp
 COMMIT;
 
 START TRANSACTION;
-DELETE FROM configs.client_testproperties;
-DELETE FROM configs.client_testmode;
-DELETE FROM configs.client_segmentproperties;
-DELETE FROM configs.client_testformproperties;
-DELETE FROM configs.client_testwindow;
-DELETE FROM configs.client_testgrades;
-DELETE FROM configs.client_testeligibility;
-DELETE FROM configs.client_test_itemtypes;
-DELETE FROM configs.client_test_itemconstraint;
-DELETE FROM configs.client_testtooltype;
-DELETE FROM configs.client_testtool;
+-- DELETE FROM configs.client_testproperties; -- worked fine
+-- DELETE FROM configs.client_testmode; -- worked fine
+-- DELETE FROM configs.client_segmentproperties; -- worked fine
+-- DELETE FROM configs.client_testformproperties; -- worked fine
+-- DELETE FROM configs.client_testwindow; -- worked fine
+-- DELETE FROM configs.client_testgrades; -- worked fine
+-- DELETE FROM configs.client_testeligibility; -- worked fine
+-- DELETE FROM configs.client_test_itemtypes; -- worked fine
+-- DELETE FROM configs.client_test_itemconstraint; -- worked fine
+-- DELETE FROM configs.client_testtooltype; -- commented out 'PrintSize' (line 20)
+-- DELETE FROM configs.client_testtool; -- commented out 'PrintSize' (lines 27 - 32)
+-- DELETE FROM configs.client_tooldependencies; -- worked fine
 COMMIT;
