@@ -4,8 +4,6 @@
 -- The .zip stores the XML files shown below in Test Packages/Administration.  This SQL is executed during the
 -- db-schema-setup.sh script.
 --
--- Author: Jeff Johnson <jjohnson@fairwaytech.com>
---
 -- Usage: Execute against the itembank database after the schema has been created.
 -- ----------------------------------------------------------------------------------------------------------------------
 USE itembank;

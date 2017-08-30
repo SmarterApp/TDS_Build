@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #-----------------------------------------------------------------------------------------------------------------------
 # Description:  This script clones the repos necessary to build the TDS application.  Typically, this script will
-# be run from the tds-build directory, which will create all of the cloned repos in tds-build's sibling repositiries 
+# be run from the tds-build directory, which will create all of the cloned repos in tds-build's sibling repositiries
 # directory.
 #
 # Pre-requisites:  Mecurial, a file list of repos,  ssh keys
 # https://confluence.atlassian.com/bitbucket/add-an-ssh-key-to-an-account-302811853.html
 #
-# Usage:  
+# Usage:
 #   ./repo-checkout.sh
 #   ./repo-checkout.sh -b develop
 #
@@ -37,7 +37,7 @@ if [ "${PWD##*/}" = "TDS_Build" ]; then
 fi
 
 if [ -d "repositories" ]; then
-    printf "A repositories directory exists.\n" 
+    printf "A repositories directory exists.\n"
 else
     printf "A repositories directory does not exist.  Shutting down.\n"; exit
 fi
@@ -51,7 +51,7 @@ for REPO_NAME in "${FILECONTENT[@]}"; do
     CMD="git checkout $BRANCH"
     printf "\n=== executing... %s ===\n" "$CMD"
     $CMD
-    
+
     printf "\n===== Change folder back to repositories... %s ===\n"
     cd ..
     pwd
