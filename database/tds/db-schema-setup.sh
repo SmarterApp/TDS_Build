@@ -230,7 +230,7 @@ mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=i
 printf '    PATCHES[ITEMBANK] - executing db-itembank-item-update.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-itembank-item-update.sql
 printf '    PATCHES[ITEMBANK] - executing db-client_testtool-languagecasefix.sql\n'
-mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < ddb-client_testtool-languagecasefix.sql
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-client_testtool-languagecasefix.sql
 
 printf '  PATCHES - complete.\n\n'
 printf 'BUILDING DATABASE SCHEMAS COMPLETE\n\n'
