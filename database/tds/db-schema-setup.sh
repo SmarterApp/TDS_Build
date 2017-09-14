@@ -56,7 +56,7 @@ DATABASES=(
 
 for db in "${DATABASES[@]}"; do
     printf "Creating $db database...\n"
-    mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" -e "CREATE DATABASE IF NOT EXISTS $db"
+    mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" -e "CREATE DATABASE IF NOT EXISTS $db CHARACTER SET utf8 COLLATE utf8_unicode_ci"
     printf "  $db database created.\n"
 done
 
