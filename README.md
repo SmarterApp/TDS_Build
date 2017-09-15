@@ -46,10 +46,8 @@ To stop all containers, run the following:
 ### Create Database Schemas for Microservices
 To create the databases that store data for the microservices (`exam` and `exam_audit`), take the following steps:
 * Navigate to `database/exam` in this repository
-* Open the `V3__exam_create_application_users.sql`
-* Update the password for the **tds-app-user** and **tds-read-only** user to a value suitable for your organization
-* Execute `V1__exam_create_schema.sql` on the database server that will host the `exam` database
-* Execute `V2__exam_audit_create_schema.sql` on the database server that will host the `exam_audit` databasee
+* Execute `exam_create_schema.sql` on the database server that will host the `exam` database
+* Execute `exam_audit_create_schema.sql` on the database server that will host the `exam_audit` databasee
   * **NOTE:** the `exam_audit` database does not have to exist on the same database server as the `exam` database
 
 ### Create Application User Accounts for Microservices
