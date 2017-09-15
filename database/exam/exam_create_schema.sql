@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
-  File: V1__exam_create_schema.sql
+  File: exam_create_schema.sql
 
   Desc: create the exam database schema
 

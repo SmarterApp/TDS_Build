@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
-  File: V2__exam_audit_create_schema.sql
+  File: exam_audit_create_schema.sql
 
   Desc: create the exam database schema
 
