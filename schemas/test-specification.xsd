@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1">
+    <xs:element name="testspecification">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="assessment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="assessment">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="grades">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="grade"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="blueprint">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="blueprintelement">
+                                <xs:complexType>
+                                    <xs:attribute name="id" type="xs:token" use="required"/>
+                                    <xs:attribute name="type" type="xs:token" use="required"/>
+                                    <xs:attribute name="examitemcount" type="xs:int" use="required"/>
+                                    <xs:attribute name="minexamitems" type="xs:int" use="required"/>
+                                    <xs:attribute name="maxexamitems" type="xs:int" use="required"/>
+                                    <xs:attribute name="parentId" type="xs:token" use="optional"/>
+                                    <xs:attribute default="0" name="fieldtestitemcount"
+                                        type="xs:int" use="optional"/>
+                                    <xs:attribute default="0" name="minfieldtestitems" type="xs:int"/>
+                                    <xs:attribute default="0" name="maxfieldtestitems" type="xs:int"
+                                    />
+                                </xs:complexType>
+                                <xs:key name="blueprintelementkey">
+                                    <xs:selector xpath="assessment/blueprint/blueprintelement"/>
+                                    <xs:field id="blueprintid" xpath="@id"/>
+                                </xs:key>
+                                <xs:unique name="blueprintelementidkey">
+                                    <xs:selector xpath="assessment/blueprint/blueprintelement"/>
+                                    <xs:field xpath="assessment/blueprint/blueprintelement"/>
+                                </xs:unique>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="examitemcount" type="xs:int" use="required"/>
+                        <xs:attribute name="minexamitems" type="xs:int" use="required"/>
+                        <xs:attribute name="maxexamitems" type="xs:int" use="required"/>
+                        <xs:attribute default="0" name="fieldtestitemcount" type="xs:int"
+                            use="optional"/>
+                        <xs:attribute default="0" name="minfieldtestitems" type="xs:int"/>
+                        <xs:attribute default="0" name="maxfieldtestitems" type="xs:int"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="segments">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="segment" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="blueprint">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="blueprintelement">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="id" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="minexamitems" type="xs:int"
+                                                  use="required"/>
+                                                  <xs:attribute name="maxexamitems" type="xs:int"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute default="0" name="fieldtestitemcount"
+                                                  type="xs:int" use="optional"/>
+                                                <xs:attribute name="examitemcount" type="xs:int"
+                                                  use="required"/>
+                                                <xs:attribute default="0" name="minfieldtestitems"
+                                                  type="xs:int"/>
+                                                <xs:attribute default="0" name="maxfieldtestitems"
+                                                  type="xs:int"/>
+                                                <xs:attribute name="minexamitems" type="xs:int"
+                                                  use="required"/>
+                                                <xs:attribute name="maxexamitems" type="xs:int"
+                                                  use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:choice>
+                                            <xs:element name="pool">
+                                                <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="itemgroup">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element minOccurs="0" name="stimulus">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="filename" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="key" type="xs:token"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded" name="item">
+                                                  <xs:complexType>
+                                                  <xs:all>
+                                                  <xs:element name="languages">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="language"
+                                                  />
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="itemscoredimension">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="0"
+                                                  name="itemscoreparameter">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="measurementparameter"
+                                                  type="xs:token" use="required"/>
+                                                  <xs:attribute name="value" type="xs:float"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="measurementmodel"
+                                                  type="xs:token" use="required"/>
+                                                  <xs:attribute name="scorepoints" type="xs:int"
+                                                  use="required"/>
+                                                  <xs:attribute name="weight" type="xs:float"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="blueprintref">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="idref" type="xs:token"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  <xs:keyref name="blueprintrefkey"
+                                                  refer="blueprintelementkey">
+                                                  <xs:selector
+                                                  xpath="assessment/segments/segment/pool/itemgroup/item/blueprintref"/>
+                                                  <xs:field xpath="@idref"/>
+                                                  </xs:keyref>
+                                                  </xs:element>
+                                                  </xs:all>
+                                                  <xs:attribute name="type" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="filename" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="key" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="position" type="xs:int"
+                                                  use="required"/>
+                                                  <xs:attribute default="false" name="isfieldtest"
+                                                  type="xs:boolean"/>
+                                                  <xs:attribute default="true"
+                                                  name="administrationrequired" type="xs:boolean"/>
+                                                  <xs:attribute default="true" name="active"
+                                                  type="xs:boolean"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="id" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute default="ALL" name="maxitems"
+                                                  type="xs:token"/>
+                                                  <xs:attribute default="ALL" name="maxresponses"
+                                                  type="xs:token"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="forms">
+                                                <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="form">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="languages">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="language"
+                                                  />
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded" name="itemgroup">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element minOccurs="0" name="stimulus">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="filename" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="key" type="xs:token"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded" name="item">
+                                                  <xs:complexType>
+                                                  <xs:all>
+                                                  <xs:element name="itemscoredimension">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="0"
+                                                  name="itemscoreparameter">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="measurementparameter"
+                                                  type="xs:token" use="required"/>
+                                                  <xs:attribute name="value" type="xs:float"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="measurementmodel"
+                                                  type="xs:token" use="required"/>
+                                                  <xs:attribute name="scorepoints" type="xs:int"
+                                                  use="required"/>
+                                                  <xs:attribute name="weight" type="xs:float"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="blueprintref">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="idref" type="xs:token"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  <xs:keyref name="blueprintrefkey2"
+                                                  refer="blueprintelementkey">
+                                                  <xs:selector
+                                                  xpath="assessment/segments/segment/forms/form/itemgroup/item/blueprintref"/>
+                                                  <xs:field xpath="@idref"/>
+                                                  </xs:keyref>
+                                                  </xs:element>
+                                                  <xs:element name="languages">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="language"
+                                                  />
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:all>
+                                                  <xs:attribute name="type" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="filename" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="key" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="position" type="xs:int"
+                                                  use="required"/>
+                                                  <xs:attribute default="false" name="isfieldtest"
+                                                  type="xs:boolean"/>
+                                                  <xs:attribute default="true"
+                                                  name="administrationrequired" type="xs:boolean"/>
+                                                  <xs:attribute default="true" name="active"
+                                                  type="xs:boolean"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="key" type="xs:token"/>
+                                                  <xs:attribute name="name" type="xs:token"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:choice>
+                                        <xs:element name="itemselector">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="parameter">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="1"
+                                                  name="property">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="name" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="value" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="label" type="xs:token"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="blueprintelementid"
+                                                  type="xs:token" use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="type" type="xs:token"
+                                                  use="required"/>
+                                                <xs:attribute name="algorithm" type="xs:token"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="key" type="xs:token" use="required"/>
+                                    <xs:attribute name="id" type="xs:token" use="required"/>
+                                    <xs:attribute name="position" type="xs:short" use="required"/>
+                                    <xs:attribute name="label" type="xs:token"/>
+                                    <xs:attribute default="false" name="entryApproval"
+                                        type="xs:boolean"/>
+                                    <xs:attribute default="false" name="exitApproval"
+                                        type="xs:boolean"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="tools">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="tool">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="dependencies">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="dependency">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="iftype" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="ifvalue" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="value" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute default="false" name="default"
+                                                  type="xs:boolean"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="options">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="option">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="code" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="value" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="description" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute default="false" name="default"
+                                                  type="xs:boolean"/>
+                                                  <xs:attribute name="sortorder" type="xs:integer"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="name" type="xs:token" use="required"/>
+                                    <xs:attribute name="rtsFieldName" type="xs:token" use="required"/>
+                                    <xs:attribute name="studentPackageFieldName" type="xs:token"
+                                        use="required"/>
+                                    <xs:attribute default="true" name="allowChange"
+                                        type="xs:boolean"/>
+                                    <xs:attribute default="TEST" name="contextType" type="xs:token"/>
+                                    <xs:attribute name="context" type="xs:token"/>
+                                    <xs:attribute default="false" name="required" type="xs:boolean"/>
+                                    <xs:attribute default="0" name="sortorder" type="xs:integer"/>
+                                    <xs:attribute default="false" name="disableOnGuest"
+                                        type="xs:boolean"/>
+                                    <xs:attribute name="dependsOnToolType" type="xs:token"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="scoring">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="performancelevels">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="performancelevel">
+                                            <xs:complexType>
+                                                <xs:attribute name="blueprintelementid"
+                                                  type="xs:token" use="required"/>
+                                                <xs:attribute name="plevel" type="xs:integer"
+                                                  use="required"/>
+                                                <xs:attribute name="scaledlo" type="xs:float"
+                                                  use="required"/>
+                                                <xs:attribute name="scaledhi" type="xs:float"
+                                                  use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="rules">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="rule">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="parameter">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="property">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="name" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="value" type="xs:token"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded" name="value">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="index" type="xs:token"/>
+                                                  <xs:attribute name="value" type="xs:token"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="id" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="type" type="xs:token"
+                                                  use="required"/>
+                                                  <xs:attribute name="position" type="xs:integer"
+                                                  use="required"/>
+                                                  <xs:attribute name="name" type="xs:token"/>
+                                                  <xs:attribute name="label" type="xs:token"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="computationorder"
+                                                  type="xs:integer"/>
+                                                <xs:attribute name="blueprintelementid"
+                                                  type="xs:token" use="required"/>
+                                                <xs:attribute name="id" type="xs:token"
+                                                  use="required"/>
+                                                <xs:attribute name="name" type="xs:token"
+                                                  use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="key" type="xs:token" use="required"/>
+            <xs:attribute name="id" type="xs:token" use="required"/>
+            <xs:attribute name="publisher" type="xs:token" use="required"/>
+            <xs:attribute name="publishdate" type="xs:dateTime" use="required"/>
+            <xs:attribute name="label" type="xs:token" use="required"/>
+            <xs:attribute name="subject" type="xs:token" use="required"/>
+            <xs:attribute name="type" type="xs:token" use="required"/>
+            <xs:attribute name="version" type="xs:decimal" use="required"/>
+            <xs:attribute name="bankkey" type="xs:int" use="required"/>
+            <xs:attribute name="subtype" type="xs:token"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
