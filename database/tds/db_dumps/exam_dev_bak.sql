@@ -18,6 +18,11 @@
 --
 -- Table structure for table `exam`
 --
+CREATE SCHEMA IF NOT EXISTS exam 
+    CHARACTER SET utf8 
+    COLLATE utf8_unicode_ci;
+
+USE exam;
 
 DROP TABLE IF EXISTS `exam`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
