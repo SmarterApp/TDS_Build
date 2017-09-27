@@ -14,6 +14,6 @@ If the schema you want to restore already exists, use the existing schema as the
 ## Restoring into a New Schema
 If the schema you want to create does not already exist, it will be created by the script.  You can point the restore command at any existing schema; the script will create the new schema and switch to it prior to creating any schema objects.  For example, if you want to restore `configs_dev_bak.sql` to your local server but don't already have a `configs` schema, the command would look like what is shown below:
 
-Example:  `mysql -u root -p exam < database/tds/db_dumps/configs_dev_bak.sql`
+    `mysql -u root -p exam < database/tds/db_dumps/configs_dev_bak.sql`
 
 Even though the command in the example above is pointed at the `exam` database, the `configs_dev_bak.sql` script will create a `configs` schema and then switch to it before creating any other schema objects.
