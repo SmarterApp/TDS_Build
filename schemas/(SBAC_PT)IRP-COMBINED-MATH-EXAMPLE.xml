@@ -905,6 +905,7 @@
                             <Language>ENU</Language>
                         </Languages>
                         <ItemGroup>
+                            <Stimulus id="3688" filePath="/Stim-187-3688/stim-187-3688.xml"/>
                             <Item id="1434" type="GI" filepath="/Item-187-1434/item-187-1434.xml" position="1">
                                 <Languages>
                                     <Language>ENU</Language>
