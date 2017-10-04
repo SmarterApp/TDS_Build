@@ -299,8 +299,8 @@ SUBELEMENTS:
             <xs:field id="blueprintid" xpath="@id"/>
         </xs:key>
         <xs:unique name="blueprintelementidkey">
-            <xs:selector xpath="Assessment/Blueprint/BlueprintElement"/>
-            <xs:field xpath="Assessment/Blueprint/BlueprintElement/@id"/>
+            <xs:selector xpath=".//BlueprintElement"/>
+            <xs:field xpath="@id"/>
         </xs:unique>
         <xs:keyref name="BlueprintRefKey" refer="BlueprintElementKey">
             <xs:selector xpath=".//BlueprintReference"/>
@@ -404,6 +404,10 @@ The Dependency can be read as:
                                         </xs:element>
                                     </xs:sequence>
                                 </xs:complexType>
+                                <xs:unique name="UniqueToolPosition">
+                                    <xs:selector xpath=".//Option"/>
+                                    <xs:field xpath="@sortOrder"/>
+                                </xs:unique>
                             </xs:element>
                         </xs:all>
                         <xs:attribute name="name" type="xs:token" use="required"/>
