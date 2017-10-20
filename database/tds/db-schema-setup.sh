@@ -232,5 +232,12 @@ mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=i
 printf '    PATCHES[ITEMBANK] - executing db-client_testtool-languagecasefix.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=itembank < db-client_testtool-languagecasefix.sql
 
+# execute patch scripts
+for f in ../../../TDS_TestDeliverySystemDataAccess/tds-dll-schemas/src/main/resources/import/genericsbacconfig/db/migration/*
+do
+    printf "        PATCHES[CONFIGS] - executing %s\n" "$f"
+    mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=configs < "$f"
+done
+
 printf '  PATCHES - complete.\n\n'
 printf 'BUILDING DATABASE SCHEMAS COMPLETE\n\n'
