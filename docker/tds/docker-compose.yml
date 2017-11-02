@@ -121,7 +121,7 @@ services:
 
   #TDS_AssessmentPackageLoader
   loader:
-    image: smarterbalanced/tds-apl-service
+    image: fwsbac/tds-apl-service
     ports:
       - "32849:8080"
     depends_on:
