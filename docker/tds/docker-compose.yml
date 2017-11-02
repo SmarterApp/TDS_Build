@@ -121,7 +121,7 @@ services:
 
   #TDS_AssessmentPackageLoader
   loader:
-    image: fwsbac/tds-apl-service
+    image: fwsbac/tds-support-tool-service
     ports:
       - "32849:8080"
     depends_on:
@@ -134,7 +134,7 @@ services:
       retries: 10
     env_file:
       - tds-common.env
-      - apl.env
+      - tds-support-tool.env
     environment:
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
