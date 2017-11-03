@@ -119,9 +119,9 @@ services:
     environment:
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
 
-  #TDS_AssessmentPackageLoader
-  loader:
-    image: fwsbac/tds-support-tool-service
+  #TDS_SupportTool
+  support-tool:
+    image: smarterbalanced/tds-support-tool-service
     ports:
       - "32850:8080"
     depends_on:
@@ -132,11 +132,25 @@ services:
       interval: 15s
       timeout: 10s
       retries: 10
+    links:
+      - mongodb
     env_file:
       - tds-common.env
       - tds-support-tool.env
     environment:
       - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
 
   #TDS Equation Scoring Engine
   equation-scoring:
