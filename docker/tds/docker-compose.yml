@@ -121,7 +121,7 @@ services:
 
   #TDS_SupportTool
   support-tool:
-    image: smarterbalanced/tds-support-tool-service
+    image: fwsbac/tds-support-tool-service
     ports:
       - "32850:8080"
     depends_on:
