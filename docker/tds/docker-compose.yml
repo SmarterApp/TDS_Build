@@ -128,7 +128,7 @@ services:
       configuration-service:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health.json"]
+      test: ["CMD", "curl", "-f", "http://localhost:8008/health.json"]
       interval: 15s
       timeout: 10s
       retries: 10
