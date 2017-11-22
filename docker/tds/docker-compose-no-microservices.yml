@@ -1,0 +1,69 @@
+version:  '2.1'
+services:
+  # SPRING CLOUD CONFIGURATION SERVICE
+  configuration-service:
+    image: fwsbac/configuration-service
+    depends_on:
+      rabbit:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "32844:8888"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/health.json"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbit
+      # Define these in your host machine environment
+      - CONFIG_SERVICE_REPO
+      - GIT_USER
+      - GIT_PASSWORD
+      - ENCRYPT_KEY
+      - JAVA_OPTS=${CONTAINER_JAVA_OPTS}
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+  #TDS Equation Scoring Engine
+  equation-scoring:
+    image: fwsbac/equation-scoring-image:3.0.0
+    ports:
+      - "32845:8080"
+
+  #RabbitMQ Broker
+  rabbit:
+    image: rabbitmq:3.6.9-management-alpine
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    ports:
+      - "32846:5672"
+      - "32847:15672"
+    environment:
+      - RABBITMQ_LOGS="-"
+      - RABBITMQ_SASL_LOGS="-"
+
+  #Redis data store
+  redis:
+    image: redis:3.2.9-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "-h", "127.0.0.1", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    ports:
+      - "6379:6379"
