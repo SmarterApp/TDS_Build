@@ -1,4 +1,6 @@
 USE permissions_db;
+
+
 --
 -- Insert data into table `component`
 --
@@ -17,7 +19,9 @@ VALUES
   (11,'Monitoring and Alerting',NULL),
   (12,'Core Standards',NULL),
   (13,'Teacher Hand Scoring System',NULL),
-  (14,'Digital Library',NULL);
+  (14,'Digital Library',NULL),
+  (15,'Item Authoring Tool',NULL),
+  (1000000,'Item Authoring Tool',NULL);
 UNLOCK TABLES;
 
 --
@@ -114,7 +118,16 @@ VALUES
   (71,'Scoring Rule Modify'),
   (72,'Can See All Items'),
   (73,'Can See Own Items'),
-  (74,'ExplicitEligibility Upload')
+  (74,'ExplicitEligibility Upload'),
+  (1000000,'asl_write'),
+  (1000001,'audio_write'),
+  (1000002,'braille_write'),
+  (1000003,'cc_write'),
+  (1000004,'core_write'),
+  (1000005,'images_write'),
+  (1000006,'texttospeech_write'),
+  (1000007,'translations_write'),
+  (1000008,'workflow_write')
   ;
 UNLOCK TABLES;
 
@@ -148,7 +161,64 @@ VALUES
   (22,'Data Warehouse Loader'),
   (23,'Program Management Read'),
   (24,'Program Management Admin'),
-  (25,'TIS Admin');
+  (25,'TIS Admin'),
+  (26,'iat_AccessibilityReview'),
+  (27,'iat_AccessibilityUpload'),
+  (28,'iat_Archived'),
+  (29,'iat_Calibrations'),
+  (30,'iat_ContentReview'),
+  (31,'iat_DataReview'),
+  (32,'iat_Draft'),
+  (33,'iat_EditorialReview'),
+  (34,'iat_EducatorCommitteeReview'),
+  (35,'iat_FieldTest'),
+  (36,'iat_FinalApproval'),
+  (37,'iat_InitialReview'),
+  (38,'iat_MultimediaUpload'),
+  (39,'iat_Operational'),
+  (40,'iat_ParkingLot'),
+  (41,'iat_PostFieldTestCorrections'),
+  (42,'iat_QualityCorrectionsContent'),
+  (43,'iat_QualityCorrectionsEditorial'),
+  (44,'iat_QualityCorrectionsSenior'),
+  (45,'iat_Rejected'),
+  (46,'iat_Released'),
+  (47,'iat_SeniorContentReview'),
+  (48,'iat_SmarterAccessibilityReview'),
+  (49,'iat_SmarterContentAuditReview'),
+  (50,'iat_SmarterContentReview'),
+  (51,'iat_SmarterCopyEdit'),
+  (52,'iat_SmarterStudentSupportAuditReview'),
+  (53,'iat_TextToSpeechUpload'),
+  (1000000,'iat_AccessibilityReview'),
+  (1000001,'iat_AccessibilityUpload'),
+  (1000002,'iat_Archived'),
+  (1000003,'iat_Calibrations'),
+  (1000004,'iat_ContentReview'),
+  (1000005,'iat_DataReview'),
+  (1000006,'iat_Draft'),
+  (1000007,'iat_EditorialReview'),
+  (1000008,'iat_EducatorCommitteeReview'),
+  (1000009,'iat_FieldTest'),
+  (1000010,'iat_FinalApproval'),
+  (1000011,'iat_InitialReview'),
+  (1000012,'iat_MultimediaUpload'),
+  (1000013,'iat_Operational'),
+  (1000014,'iat_ParkingLot'),
+  (1000015,'iat_PostFieldTestCorrections'),
+  (1000016,'iat_QualityCorrectionsContent'),
+  (1000017,'iat_QualityCorrectionsEditorial'),
+  (1000018,'iat_QualityCorrectionsSenior'),
+  (1000019,'iat_Rejected'),
+  (1000020,'iat_Released'),
+  (1000021,'iat_SeniorContentReview'),
+  (1000022,'iat_SmarterAccessibilityReview'),
+  (1000023,'iat_SmarterContentAuditReview'),
+  (1000024,'iat_SmarterContentReview'),
+  (1000025,'iat_SmarterCopyEdit'),
+  (1000026,'iat_SmarterStudentSupportAuditReview'),
+  (1000027,'iat_TextToSpeechUpload');
+  ;
 UNLOCK TABLES;
 
 --
@@ -221,7 +291,231 @@ VALUES
   (25,'INSTITUTION'),
   (25,'DISTRICT'),
   (25,'CLIENT'),
-  (25,'STATE')
+  (25,'STATE'),
+  (26,'CLIENT'),
+  (26,'STATE'),
+  (26,'DISTRICT'),
+  (26,'INSTITUTION'),
+  (27,'CLIENT'),
+  (27,'STATE'),
+  (27,'DISTRICT'),
+  (27,'INSTITUTION'),
+  (28,'CLIENT'),
+  (28,'STATE'),
+  (28,'DISTRICT'),
+  (28,'INSTITUTION'),
+  (29,'CLIENT'),
+  (29,'STATE'),
+  (29,'DISTRICT'),
+  (29,'INSTITUTION'),
+  (30,'CLIENT'),
+  (30,'STATE'),
+  (30,'DISTRICT'),
+  (30,'INSTITUTION'),
+  (31,'CLIENT'),
+  (31,'STATE'),
+  (31,'DISTRICT'),
+  (31,'INSTITUTION'),
+  (32,'CLIENT'),
+  (32,'STATE'),
+  (32,'DISTRICT'),
+  (32,'INSTITUTION'),
+  (33,'CLIENT'),
+  (33,'STATE'),
+  (33,'DISTRICT'),
+  (33,'INSTITUTION'),
+  (34,'CLIENT'),
+  (34,'STATE'),
+  (34,'DISTRICT'),
+  (34,'INSTITUTION'),
+  (35,'CLIENT'),
+  (35,'STATE'),
+  (35,'DISTRICT'),
+  (35,'INSTITUTION'),
+  (36,'CLIENT'),
+  (36,'STATE'),
+  (36,'DISTRICT'),
+  (36,'INSTITUTION'),
+  (37,'CLIENT'),
+  (37,'STATE'),
+  (37,'DISTRICT'),
+  (37,'INSTITUTION'),
+  (38,'CLIENT'),
+  (38,'STATE'),
+  (38,'DISTRICT'),
+  (38,'INSTITUTION'),
+  (39,'CLIENT'),
+  (39,'STATE'),
+  (39,'DISTRICT'),
+  (39,'INSTITUTION'),
+  (40,'CLIENT'),
+  (40,'STATE'),
+  (40,'DISTRICT'),
+  (40,'INSTITUTION'),
+  (41,'CLIENT'),
+  (41,'STATE'),
+  (41,'DISTRICT'),
+  (41,'INSTITUTION'),
+  (42,'CLIENT'),
+  (42,'STATE'),
+  (42,'DISTRICT'),
+  (42,'INSTITUTION'),
+  (43,'CLIENT'),
+  (43,'STATE'),
+  (43,'DISTRICT'),
+  (43,'INSTITUTION'),
+  (44,'CLIENT'),
+  (44,'STATE'),
+  (44,'DISTRICT'),
+  (44,'INSTITUTION'),
+  (45,'CLIENT'),
+  (45,'STATE'),
+  (45,'DISTRICT'),
+  (45,'INSTITUTION'),
+  (46,'CLIENT'),
+  (46,'STATE'),
+  (46,'DISTRICT'),
+  (46,'INSTITUTION'),
+  (47,'CLIENT'),
+  (47,'STATE'),
+  (47,'DISTRICT'),
+  (47,'INSTITUTION'),
+  (48,'CLIENT'),
+  (48,'STATE'),
+  (48,'DISTRICT'),
+  (48,'INSTITUTION'),
+  (49,'CLIENT'),
+  (49,'STATE'),
+  (49,'DISTRICT'),
+  (49,'INSTITUTION'),
+  (50,'CLIENT'),
+  (50,'STATE'),
+  (50,'DISTRICT'),
+  (50,'INSTITUTION'),
+  (51,'CLIENT'),
+  (51,'STATE'),
+  (51,'DISTRICT'),
+  (51,'INSTITUTION'),
+  (52,'CLIENT'),
+  (52,'STATE'),
+  (52,'DISTRICT'),
+  (52,'INSTITUTION'),
+  (53,'CLIENT'),
+  (53,'STATE'),
+  (53,'DISTRICT'),
+  (53,'INSTITUTION'),
+  (1000000,'CLIENT'),
+  (1000000,'STATE'),
+  (1000000,'DISTRICT'),
+  (1000000,'INSTITUTION'),
+  (1000001,'CLIENT'),
+  (1000001,'STATE'),
+  (1000001,'DISTRICT'),
+  (1000001,'INSTITUTION'),
+  (1000002,'CLIENT'),
+  (1000002,'STATE'),
+  (1000002,'DISTRICT'),
+  (1000002,'INSTITUTION'),
+  (1000003,'CLIENT'),
+  (1000003,'STATE'),
+  (1000003,'DISTRICT'),
+  (1000003,'INSTITUTION'),
+  (1000004,'CLIENT'),
+  (1000004,'STATE'),
+  (1000004,'DISTRICT'),
+  (1000004,'INSTITUTION'),
+  (1000005,'CLIENT'),
+  (1000005,'STATE'),
+  (1000005,'DISTRICT'),
+  (1000005,'INSTITUTION'),
+  (1000006,'CLIENT'),
+  (1000006,'STATE'),
+  (1000006,'DISTRICT'),
+  (1000006,'INSTITUTION'),
+  (1000007,'CLIENT'),
+  (1000007,'STATE'),
+  (1000007,'DISTRICT'),
+  (1000007,'INSTITUTION'),
+  (1000008,'CLIENT'),
+  (1000008,'STATE'),
+  (1000008,'DISTRICT'),
+  (1000008,'INSTITUTION'),
+  (1000009,'CLIENT'),
+  (1000009,'STATE'),
+  (1000009,'DISTRICT'),
+  (1000009,'INSTITUTION'),
+  (1000010,'CLIENT'),
+  (1000010,'STATE'),
+  (1000010,'DISTRICT'),
+  (1000010,'INSTITUTION'),
+  (1000011,'CLIENT'),
+  (1000011,'STATE'),
+  (1000011,'DISTRICT'),
+  (1000011,'INSTITUTION'),
+  (1000012,'CLIENT'),
+  (1000012,'STATE'),
+  (1000012,'DISTRICT'),
+  (1000012,'INSTITUTION'),
+  (1000013,'CLIENT'),
+  (1000013,'STATE'),
+  (1000013,'DISTRICT'),
+  (1000013,'INSTITUTION'),
+  (1000014,'CLIENT'),
+  (1000014,'STATE'),
+  (1000014,'DISTRICT'),
+  (1000014,'INSTITUTION'),
+  (1000015,'CLIENT'),
+  (1000015,'STATE'),
+  (1000015,'DISTRICT'),
+  (1000015,'INSTITUTION'),
+  (1000016,'CLIENT'),
+  (1000016,'STATE'),
+  (1000016,'DISTRICT'),
+  (1000016,'INSTITUTION'),
+  (1000017,'CLIENT'),
+  (1000017,'STATE'),
+  (1000017,'DISTRICT'),
+  (1000017,'INSTITUTION'),
+  (1000018,'CLIENT'),
+  (1000018,'STATE'),
+  (1000018,'DISTRICT'),
+  (1000018,'INSTITUTION'),
+  (1000019,'CLIENT'),
+  (1000019,'STATE'),
+  (1000019,'DISTRICT'),
+  (1000019,'INSTITUTION'),
+  (1000020,'CLIENT'),
+  (1000020,'STATE'),
+  (1000020,'DISTRICT'),
+  (1000020,'INSTITUTION'),
+  (1000021,'CLIENT'),
+  (1000021,'STATE'),
+  (1000021,'DISTRICT'),
+  (1000021,'INSTITUTION'),
+  (1000022,'CLIENT'),
+  (1000022,'STATE'),
+  (1000022,'DISTRICT'),
+  (1000022,'INSTITUTION'),
+  (1000023,'CLIENT'),
+  (1000023,'STATE'),
+  (1000023,'DISTRICT'),
+  (1000023,'INSTITUTION'),
+  (1000024,'CLIENT'),
+  (1000024,'STATE'),
+  (1000024,'DISTRICT'),
+  (1000024,'INSTITUTION'),
+  (1000025,'CLIENT'),
+  (1000025,'STATE'),
+  (1000025,'DISTRICT'),
+  (1000025,'INSTITUTION'),
+  (1000026,'CLIENT'),
+  (1000026,'STATE'),
+  (1000026,'DISTRICT'),
+  (1000026,'INSTITUTION'),
+  (1000027,'CLIENT'),
+  (1000027,'STATE'),
+  (1000027,'DISTRICT'),
+  (1000027,'INSTITUTION')
   ;
 UNLOCK TABLES;
 --
@@ -653,6 +947,140 @@ VALUES
   (423,1,13,73),
   (424,1,13,72),
   (425,NULL,3,74),
-  (426,1,3,74)
+  (426,1,3,74),
+  -- asl_write
+    (1000000,NULL,1000000,1000000),
+    -- iat_AccessibilityUpload
+    (1000001,1000001,1000000,1000000),
+  --
+  -- audio_write
+    (1000002,NULL,1000000,1000001),
+    -- iat_AccessibilityUpload
+    (1000003,1000001,1000000,1000001),
+  --
+  -- braille_write
+    (1000004,NULL,1000000,1000002),
+    -- iat_AccessibilityUpload
+    (1000005,1000001,1000000,1000002),
+  --
+  -- cc_write
+    (1000006,NULL,1000000,1000003),
+    -- iat_AccessibilityUpload
+    (1000007,1000001,1000000,1000003),
+  --
+  -- core_write
+    (1000008,NULL,1000000,1000004),
+    -- iat_Draft
+    (1000009,1000006,1000000,1000004),
+    -- iat_InitialReview
+    (1000010,1000011,1000000,1000004),
+    -- iat_MultimediaUpload
+    (1000011,1000012,1000000,1000004),
+    -- iat_ContentReview
+    (1000012,1000004,1000000,1000004),
+    -- iat_EditorialReview
+    (1000013,1000007,1000000,1000004),
+    -- iat_SeniorContentReview
+    (1000014,1000021,1000000,1000004),
+    -- iat_QualityCorrectionsContent
+    (1000015,1000016,1000000,1000004),
+    -- iat_QualityCorrectionsEditorial
+    (1000016,1000017,1000000,1000004),
+    -- iat_QualityCorrectionsSenior
+    (1000017,1000018,1000000,1000004),
+    -- iat_SmarterCopyEdit
+    (1000018,1000025,1000000,1000004),
+    -- iat_TextToSpeechUpload
+    (1000019,1000027,1000000,1000004),
+  --
+  -- images_write
+    (1000020,NULL,1000000,1000005),
+    -- iat_AccessibilityUpload
+    (1000021,1000001,1000000,1000005),
+    -- iat_Draft
+    (1000022,1000006,1000000,1000005),
+    -- iat_InitialReview
+    (1000023,1000011,1000000,1000005),
+    -- iat_MultimediaUpload
+    (1000024,1000012,1000000,1000005),
+    -- iat_ContentReview
+    (1000025,1000004,1000000,1000005),
+    -- iat_EditorialReview
+    (1000026,1000007,1000000,1000005),
+    -- iat_SeniorContentReview
+    (1000027,1000021,1000000,1000005),
+    -- iat_QualityCorrectionsContent
+    (1000028,1000016,1000000,1000005),
+    -- iat_QualityCorrectionsSenior
+    (1000029,1000018,1000000,1000005),
+  --
+  -- texttospeech_write
+    (1000030,NULL,1000000,1000006),
+    -- iat_TextToSpeechUpload
+    (1000031,1000027,1000000,1000006),
+  --
+  -- translations_write
+    (1000032,NULL,1000000,1000007),
+    -- iat_AccessibilityUpload
+    (1000033,1000001,1000000,1000007),
+  --
+  -- workflow_write
+    (1000034,NULL,1000000,1000008),
+    -- iat_AccessibilityReview
+    (1000035,1000000,1000000,1000008),
+    -- iat_AccessibilityUpload
+    (1000036,1000001,1000000,1000008),
+    -- iat_Archived
+    (1000037,1000002,1000000,1000008),
+    -- iat_Calibrations
+    (1000038,1000003,1000000,1000008),
+    -- iat_ContentReview
+    (1000039,1000004,1000000,1000008),
+    -- iat_DataReview,
+    (1000040,1000005,1000000,1000008),
+    -- iat_Draft
+    (1000041,1000006,1000000,1000008),
+    -- iat_EditorialReview
+    (1000042,1000007,1000000,1000008),
+    -- iat_EducatorCommitteeReview
+    (1000043,1000008,1000000,1000008),
+    -- iat_FieldTest
+    (1000044,1000009,1000000,1000008),
+    -- iat_FinalApproval
+    (1000045,1000010,1000000,1000008),
+    -- iat_InitialReview
+    (1000046,1000011,1000000,1000008),
+    -- iat_MultimediaUpload
+    (1000047,1000012,1000000,1000008),
+    -- iat_Operational
+    (1000048,1000013,1000000,1000008),
+    -- iat_ParkingLot
+    (1000049,1000014,1000000,1000008),
+    -- iat_PostFieldTestCorrections
+    (1000050,1000015,1000000,1000008),
+    -- iat_QualityCorrectionsContent
+    (1000051,1000016,1000000,1000008),
+    -- iat_QualityCorrectionsEditorial
+    (1000052,1000017,1000000,1000008),
+    -- iat_QualityCorrectionsSenior
+    (1000053,1000018,1000000,1000008),
+    -- iat_Rejected
+    (1000054,1000019,1000000,1000008),
+    -- iat_Released
+    (1000055,1000020,1000000,1000008),
+    -- iat_SeniorContentReview
+    (1000056,1000021,1000000,1000008),
+    -- iat_SmarterAccessibilityReview
+    (1000057,1000022,1000000,1000008),
+    -- iat_SmarterContentAuditReview
+    (1000058,1000023,1000000,1000008),
+    -- iat_SmarterContentReview
+    (1000059,1000024,1000000,1000008),
+    -- iat_SmarterCopyEdit
+    (1000060,1000025,1000000,1000008),
+    -- iat_SmarterStudentSupportAuditReview
+    (1000061,1000026,1000000,1000008),
+    -- iat_TextToSpeechUpload
+    (1000062,1000027,1000000,1000008)
   ;
 UNLOCK TABLES;
