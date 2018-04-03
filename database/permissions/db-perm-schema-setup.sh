@@ -47,4 +47,8 @@ printf 'PERMISSIONS - Loading configuration data...\n'
 printf '  PERMISSIONS - executing db-perm-seed-data.sql\n'
 mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=permissions_db < db-perm-seed-data.sql
 printf '  PERMISSIONS - data load complete.\n\n'
+
+printf '  PERMISSIONS - executing db-perm-seed-data-supporttool.sql\n'
+mysql --host="$HOST" --port="$PORT" --user="$USER" --password="$PW" --database=permissions_db < db-perm-seed-data-supporttool.sql
+printf '  PERMISSIONS - data load complete.\n\n'
 printf 'permissions_db DATABASE BUILD COMPLETE'
