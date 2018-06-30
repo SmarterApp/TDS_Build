@@ -193,5 +193,3 @@ VALUES
   (1000152,1000027,1000000,1000013)
   ;
 UNLOCK TABLES;
-
-Process finished with exit code 0
