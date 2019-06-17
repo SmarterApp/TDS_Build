@@ -325,7 +325,7 @@ VALUES
   -- iat_SmarterStudentSupportAuditReview
   (1000061,1000026,1000000,1000008),
   -- iat_TextToSpeechUpload
-  (1000062,1000027,1000000,1000008)
+  (1000062,1000027,1000000,1000008),
 --
 -- can_access_iat
   (1000064,NULL,1000000,1000009),
@@ -384,7 +384,7 @@ VALUES
   -- iat_SmarterStudentSupportAuditReview
   (1000091,1000026,1000000,1000009),
   -- iat_TextToSpeechUpload
-  (1000092,1000027,1000000,1000009)
+  (1000092,1000027,1000000,1000009),
 --
 -- can_create_item
   (1000094,NULL,1000000,1000010),
